@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculadora de Hipoteca - Nattiva</title>
+
+  <!-- Móvil -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Para que al compartir el link se vea el logo y descripción -->
+  <meta property="og:title" content="Calculadora de Hipoteca - Nattiva" />
+  <meta property="og:description" content="Simula tu cuota hipotecaria en segundos." />
+  <meta property="og:image" content="https://i.ibb.co/B5hsZRjk/nativa-2-removebg-preview.png" />
+  <meta property="og:type" content="website" />
+
+  <!-- Estilos: pantalla completa sin bordes -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #020617; /* azul oscuro similar al diseño de la calculadora */
+    }
+
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <!-- Aquí simplemente incrustamos tu formulario de n8n -->
+  <iframe
+    src="https://shakdows.app.n8n.cloud/form/3b8d44ae-ffea-48f6-90c1-fb9943471656"
+    allowfullscreen
+  ></iframe>
+</body>
+</html>
