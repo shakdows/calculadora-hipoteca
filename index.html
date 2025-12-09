@@ -5,49 +5,64 @@
   <title>Calculadora de Hipoteca - Nattiva</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <!-- Manifest para icono de app -->
-  <link rel="manifest" href="manifest.webmanifest">
+  <!-- Preconexión para que n8n cargue un poco más rápido -->
+  <link rel="preconnect" href="https://shakdows.app.n8n.cloud">
 
-  <!-- Iconos -->
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+  <!-- Iconos para el acceso directo -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-512.png">
+  <link rel="apple-touch-icon" href="icon-512.png">
+
+  <!-- Color de la barra del navegador en móvil -->
+  <meta name="theme-color" content="#b7182e" />
+
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .splash-logo {
+      height: 120px;
+      display: block;
+      object-fit: contain;
+    }
+  </style>
+
+  <script>
+    // Redirección lo antes posible
+    const targetUrl = "https://shakdows.app.n8n.cloud/form/3b8d44ae-ffea-48f6-90c1-fb9943471656";
+
+    // Intento 1: redirección inmediata
+    window.location.replace(targetUrl);
+
+    // Por si algún navegador retrasa el script del body,
+    // volvemos a intentar a los 800 ms
+    setTimeout(() => {
+      if (location.href.indexOf("shakdows.app.n8n.cloud") === -1) {
+        window.location.replace(targetUrl);
+      }
+    }, 800);
+  </script>
 </head>
 
-<body style="
-  margin:0;
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#020617;
-  color:#e5e7eb;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-">
-  <div style="text-align:center;">
-    <img src="icon.png"
-         alt="Nattiva Inmobiliaria"
-         style="height:120px; display:block; margin:0 auto 16px; object-fit:contain;">
+<body>
+  <!-- Solo se ve si la redir se demora un poquito -->
+  <img
+    src="icon-512.png"
+    alt="Nattiva Inmobiliaria"
+    class="splash-logo"
+  />
 
-    <h1 style="margin:8px 0 4px; font-size:18px;">Calculadora de Hipoteca</h1>
-    <p style="margin:0 0 18px; font-size:14px; opacity:0.9;">
-      Toca el botón para abrir la calculadora conectada a n8n.
-    </p>
-
-    <button
-      onclick="window.location.href='https://shakdows.app.n8n.cloud/form/3b8d44ae-ffea-48f6-90c1-fb9943471656';"
-      style="
-        padding:10px 20px;
-        border-radius:9999px;
-        border:none;
-        background:#f97316;
-        color:white;
-        font-weight:600;
-        font-size:14px;
-        cursor:pointer;
-      ">
-      Abrir calculadora
-    </button>
-  </div>
+  <noscript>
+    <!-- Fallback si el usuario tiene JS desactivado -->
+    <a href="https://shakdows.app.n8n.cloud/form/3b8d44ae-ffea-48f6-90c1-fb9943471656"
+       style="color:#e5e7eb; text-decoration:none; margin-top:16px;">
+      Abrir calculadora de hipoteca
+    </a>
+  </noscript>
 </body>
 </html>
-
