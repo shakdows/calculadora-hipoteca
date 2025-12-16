@@ -9,8 +9,8 @@
   <link rel="manifest" href="manifest.webmanifest">
 
   <!-- Iconos -->
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
 </head>
 
 <body style="
@@ -23,31 +23,155 @@
   color:#e5e7eb;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 ">
-  <div style="text-align:center;">
+  <div style="text-align:center; width:min(420px, 92vw);">
+
     <img src="icon.png"
          alt="Nattiva Inmobiliaria"
          style="height:120px; display:block; margin:0 auto 16px; object-fit:contain;">
 
     <h1 style="margin:8px 0 4px; font-size:18px;">Calculadora de crédito hipotecario</h1>
-    <p style="margin:0 0 18px; font-size:14px; opacity:0.9;">
-      
-    </p>
+    <p style="margin:0 0 18px; font-size:14px; opacity:0.9;"></p>
 
-    <button
-      onclick="window.location.href='https://shakdows.app.n8n.cloud/form/3b8d44ae-ffea-48f6-90c1-fb9943471656';"
-      style="
-        padding:10px 20px;
-        border-radius:9999px;
-        border:none;
-        background:#f97316;
-        color:white;
-        font-weight:600;
-        font-size:14px;
-        cursor:pointer;
-      ">
-      Abrir calculadora
-    </button>
+    <!-- Vista PIN -->
+    <div id="pinView" style="margin-top:14px;">
+      <input id="pinInput"
+        type="password"
+        inputmode="numeric"
+        placeholder="Ingresa tu PIN"
+        style="
+          width:100%;
+          box-sizing:border-box;
+          padding:12px 14px;
+          border-radius:12px;
+          border:1px solid rgba(255,255,255,0.18);
+          background:#0b1220;
+          color:#e5e7eb;
+          font-size:16px;
+          outline:none;
+        "
+      />
+      <button id="pinBtn"
+        style="
+          width:100%;
+          margin-top:10px;
+          padding:10px 20px;
+          border-radius:9999px;
+          border:none;
+          background:#f97316;
+          color:white;
+          font-weight:600;
+          font-size:14px;
+          cursor:pointer;
+        ">
+        Entrar
+      </button>
+
+      <div id="pinErr" style="min-height:18px; margin-top:10px; font-size:13px; color:#fca5a5;"></div>
+    </div>
+
+    <!-- Vista botón (se muestra solo si el PIN es válido) -->
+    <div id="openView" style="display:none; margin-top:14px;">
+      <button
+        id="openBtn"
+        style="
+          width:100%;
+          padding:10px 20px;
+          border-radius:9999px;
+          border:none;
+          background:#f97316;
+          color:white;
+          font-weight:600;
+          font-size:14px;
+          cursor:pointer;
+        ">
+        Abrir calculadora
+      </button>
+
+      <button
+        id="logoutBtn"
+        style="
+          width:100%;
+          margin-top:10px;
+          padding:10px 20px;
+          border-radius:9999px;
+          border:1px solid rgba(255,255,255,0.18);
+          background:transparent;
+          color:#e5e7eb;
+          font-weight:600;
+          font-size:14px;
+          cursor:pointer;
+        ">
+        Cerrar sesión
+      </button>
+    </div>
+
   </div>
+
+  <script>
+    // Ajusta esto:
+    const PIN_CORRECTO = "1234"; // <-- cambia tu PIN aquí
+    const FORM_URL = "https://shakdows.app.n8n.cloud/form/3b8d44ae-ffea-48f6-90c1-fb9943471656";
+    const KEY = "nattiva_pin_ok";
+
+    const pinView = document.getElementById("pinView");
+    const openView = document.getElementById("openView");
+    const pinInput = document.getElementById("pinInput");
+    const pinBtn = document.getElementById("pinBtn");
+    const pinErr = document.getElementById("pinErr");
+    const openBtn = document.getElementById("openBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    function showOpen() {
+      pinView.style.display = "none";
+      openView.style.display = "block";
+    }
+
+    function showPin() {
+      pinView.style.display = "block";
+      openView.style.display = "none";
+      pinInput.value = "";
+      pinErr.textContent = "";
+      pinInput.focus();
+    }
+
+    // Si ya pasó el PIN antes, no lo pidas de nuevo
+    if (localStorage.getItem(KEY) === "1") {
+      showOpen();
+    } else {
+      showPin();
+    }
+
+    function validatePin() {
+      const pin = (pinInput.value || "").trim();
+      pinErr.textContent = "";
+
+      if (!pin) {
+        pinErr.textContent = "Ingresa el PIN.";
+        return;
+      }
+      if (pin !== PIN_CORRECTO) {
+        pinErr.textContent = "PIN incorrecto.";
+        return;
+      }
+
+      localStorage.setItem(KEY, "1");
+      showOpen();
+    }
+
+    pinBtn.addEventListener("click", validatePin);
+
+    pinInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") validatePin();
+    });
+
+    openBtn.addEventListener("click", () => {
+      window.location.href = FORM_URL;
+    });
+
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem(KEY);
+      showPin();
+    });
+  </script>
 </body>
 </html>
-
