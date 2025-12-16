@@ -25,24 +25,31 @@
   color:#e5e7eb;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 ">
+
   <div style="text-align:center; width:min(420px, 92vw);">
 
     <img src="icon.png"
          alt="Nattiva Inmobiliaria"
          style="height:120px; display:block; margin:0 auto 16px; object-fit:contain;">
 
-    <h1 style="margin:8px 0 4px; font-size:18px;">Calculadora de crédito hipotecario</h1>
+    <h1 style="margin:8px 0 16px; font-size:18px;">
+      Calculadora de crédito hipotecario
+    </h1>
 
-    <!-- PANTALLA PIN -->
-    <div id="pinView" style="margin-top:18px;">
-      <input id="pinInput"
+    <!-- PANTALLA CONTRASEÑA -->
+    <div id="pinView">
+
+      <input
+        id="pinInput"
         type="password"
-        inputmode="numeric"
         placeholder="Ingresa la contraseña"
+        autocomplete="current-password"
+        autocapitalize="off"
+        spellcheck="false"
         style="
           width:100%;
           box-sizing:border-box;
-          padding:12px 14px;
+          padding:14px;
           border-radius:12px;
           border:1px solid rgba(255,255,255,0.18);
           background:#0b1220;
@@ -52,24 +59,28 @@
         "
       />
 
-      <button id="pinBtn"
+      <button
+        id="pinBtn"
         style="
           width:100%;
-          margin-top:10px;
-          padding:10px 20px;
+          margin-top:12px;
+          padding:12px;
           border-radius:9999px;
           border:none;
           background:#f97316;
           color:white;
           font-weight:600;
-          font-size:14px;
+          font-size:15px;
           cursor:pointer;
         ">
         Entrar
       </button>
 
-      <div id="pinErr"
-           style="min-height:18px; margin-top:10px; font-size:13px; color:#fca5a5;"></div>
+      <div
+        id="pinErr"
+        style="min-height:20px; margin-top:10px; font-size:13px; color:#fca5a5;">
+      </div>
+
     </div>
 
     <!-- BOTÓN ABRIR CALCULADORA -->
@@ -78,13 +89,13 @@
         onclick="window.location.href='https://shakdows.app.n8n.cloud/form/3b8d44ae-ffea-48f6-90c1-fb9943471656';"
         style="
           width:100%;
-          padding:10px 20px;
+          padding:12px;
           border-radius:9999px;
           border:none;
           background:#f97316;
           color:white;
           font-weight:600;
-          font-size:14px;
+          font-size:15px;
           cursor:pointer;
         ">
         Abrir calculadora
@@ -97,7 +108,7 @@
   // =========================
   // CONFIGURACIÓN
   // =========================
-  const PIN_CORRECTO = "Nattiva2025"; // <-- TU CONTRASEÑA REAL
+  const PIN_CORRECTO = "Nattiva2025"; // 🔐 CAMBIA AQUÍ SI QUIERES
 
   // =========================
   // ELEMENTOS
@@ -109,7 +120,7 @@
   const pinErr = document.getElementById("pinErr");
 
   // =========================
-  // INICIO: SIEMPRE PEDIR PIN
+  // SIEMPRE PEDIR CONTRASEÑA
   // =========================
   function showPin() {
     pinView.style.display = "block";
@@ -127,7 +138,7 @@
   showPin();
 
   // =========================
-  // VALIDACIÓN PIN
+  // VALIDACIÓN
   // =========================
   function validatePin() {
     const pin = pinInput.value.trim();
