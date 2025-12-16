@@ -5,7 +5,7 @@
   <title>Calculadora de Hipoteca - Nattiva</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <!-- Manifest PWA -->
+  <!-- Manifest -->
   <link rel="manifest" href="manifest.webmanifest">
 
   <!-- Iconos -->
@@ -36,16 +36,17 @@
       Calculadora de crédito hipotecario
     </h1>
 
-    <!-- PANTALLA CONTRASEÑA -->
+    <!-- CONTRASEÑA -->
     <div id="pinView">
 
       <input
         id="pinInput"
         type="password"
-        placeholder="Ingresa la contraseña"
+        inputmode="text"
         autocomplete="current-password"
         autocapitalize="off"
         spellcheck="false"
+        placeholder="Ingresa la contraseña"
         style="
           width:100%;
           box-sizing:border-box;
@@ -83,7 +84,7 @@
 
     </div>
 
-    <!-- BOTÓN ABRIR CALCULADORA -->
+    <!-- ABRIR CALCULADORA -->
     <div id="openView" style="display:none; margin-top:18px;">
       <button
         onclick="window.location.href='https://shakdows.app.n8n.cloud/form/3b8d44ae-ffea-48f6-90c1-fb9943471656';"
@@ -108,7 +109,7 @@
   // =========================
   // CONFIGURACIÓN
   // =========================
-  const PIN_CORRECTO = "Nattiva2025"; // 🔐 CAMBIA AQUÍ SI QUIERES
+  const PIN_CORRECTO = "Nattiva2025";
 
   // =========================
   // ELEMENTOS
@@ -120,14 +121,14 @@
   const pinErr = document.getElementById("pinErr");
 
   // =========================
-  // SIEMPRE PEDIR CONTRASEÑA
+  // INICIO (SIEMPRE PIN)
   // =========================
   function showPin() {
     pinView.style.display = "block";
     openView.style.display = "none";
     pinInput.value = "";
     pinErr.textContent = "";
-    setTimeout(() => pinInput.focus(), 100);
+    setTimeout(() => pinInput.focus(), 150);
   }
 
   function showOpen() {
